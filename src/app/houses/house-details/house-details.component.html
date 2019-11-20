@@ -2,25 +2,25 @@
   <jesi-button>🡄 Back to houses</jesi-button>
 </div>
 
-<main class="padded spaced">
+<main *ngIf="house$ | async as house; " class="padded spaced">
   <aside>
     <img />
   </aside>
   <div>
     <h2>
-      <!-- HOUSE NAME -->
+      {{house.name}}
     </h2>
     <h3>
-      <!-- HOUSE REGION - HOUSE SEAT -->
+      {{house.region}} - {{house.seat}}
     </h3>
     <dl>
-      <dt>Words</dt>
+      <dt *ngIf="house.words">Words</dt>
       <dd>
-        <!-- HOUSE WORDS -->
+        {{house.words}}
       </dd>
       <dt>Coat of arms</dt>
       <dd>
-        <!-- HOUSE COAT OF ARMS -->
+        {{house.coatOfArms}}
       </dd>
     </dl>
   </div>

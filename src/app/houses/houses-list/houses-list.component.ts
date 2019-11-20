@@ -25,8 +25,7 @@ export class HousesListComponent implements OnInit, JesiappPage {
     this.houses$ = this.housesService.listHouses();
   }
 
-  public openDetails(id){
-    console.log('open Details');
+  public openDetails(id) {
     this.router.navigateByUrl(`/houses/${id}`);
   }
 }
