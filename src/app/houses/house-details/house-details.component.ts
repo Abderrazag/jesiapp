@@ -1,8 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute } from '@angular/router';
+import { Router } from '@angular/router';
+
 import { HousesService } from '../houses.service';
 import { House } from '../House';
+import { Character } from '../../characters/Character';
 import { Observable } from 'rxjs';
+import { CharactersService } from 'src/app/characters/characters.service';
 
 
 @Component({
@@ -12,12 +16,14 @@ import { Observable } from 'rxjs';
 export class HouseDetailsComponent implements OnInit {
 
   public house$!: Observable<House>;
+  public characters$!: Observable<Character[]>;
 
-  constructor(private route: ActivatedRoute, private housesService: HousesService) {}
+  constructor(private route: ActivatedRoute, private readonly router: Router, private housesService: HousesService, private charactersService: CharactersService) {}
 
 
   public ngOnInit(): void {
     this.getHouseModel();
+    this.getCharacterModel();
   }
 
   private getHouseId(): string {
@@ -27,7 +33,15 @@ export class HouseDetailsComponent implements OnInit {
   private getHouseModel(): void {
     const id = parseInt(this.getHouseId(), 10);
     this.house$ = this.housesService.getHouse(id);
-    console.log('houseModel: ', this.house$);
+  }
+
+  public goHome() {
+    this.router.navigateByUrl('/houses');
+  }
+
+  private getCharacterModel(): void {
+    const id = parseInt(this.getHouseId(), 10);
+    this.characters$ = this.charactersService.listHouseCharacters(id);
   }
 
 }

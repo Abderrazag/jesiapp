@@ -1,6 +1,6 @@
 <section class="spaced">
   <h3>
-    <!-- CHARACTER NAME -->
+    {{character.name}}
   </h3>
   <aside>
     <img />
@@ -9,11 +9,11 @@
     <dl>
       <dt>Title</dt>
       <dd>
-        <!-- CHARACTER TITLE -->
+        {{character.title}}
       </dd>
-      <dt>Aliases</dt>
+      <dt *ngIf="character.aliases.length">Aliases</dt>
       <dd>
-        <!-- CHARACTER ALIASES IN A SINGLE STRING, SEPARATED BY COMAS -->
+        {{character.aliases}}
       </dd>
     </dl>
   </div>
